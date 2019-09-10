@@ -26,8 +26,7 @@ class ErrorHandler {
 
   static void handleUnauthenticatedError() async {
     final di = await AppDi.instance();
-    await di.authRepository.deleteToken();
-    AppDi.reset();
+    await di.accountsRepository.logOut();
     // Use App.navigatorKey.currentState because
     // Router.navigateTo does not work with App.navigatorKey.currentContext.
     await App.navigatorKey.currentState.pushNamed(SplashRouter.route);
