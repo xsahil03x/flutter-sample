@@ -9,16 +9,17 @@ import 'package:com_cingulo_sample/errors/error_handler.dart';
 import 'package:com_cingulo_sample/errors/model_error.dart';
 import 'package:com_cingulo_sample/models/auth/auth_permission_model.dart';
 import 'package:com_cingulo_sample/models/auth/auth_token_model.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:inject/inject.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /*
  * This is the only repository that must not extend Repository because
  * Repository uses it for onAuthPermission and onRefreshDaily.
  */
 class AuthRepository with DisposeMixin {
-  static final String sharedPrefsAuthTokenKey = 'AuthRepository.authToken';
+  final FlutterSecureStorage _storage = FlutterSecureStorage();
+  final String _authTokenKey = 'AuthRepository.authToken';
   final AuthApi _authApi;
 
   Completer<void> _initialized = Completer<void>();
@@ -73,14 +74,12 @@ class AuthRepository with DisposeMixin {
   }
 
   Future<AuthPermissionModel> getPermission() async {
-    final sharedPrefs = await SharedPreferences.getInstance();
-    final isAuthenticated = sharedPrefs.containsKey(sharedPrefsAuthTokenKey);
+    final isAuthenticated = await _storage.read(key: _authTokenKey) != null;
     return AuthPermissionModel(isAuthenticated);
   }
 
   Future<AuthTokenModel> getToken() async {
-    final sharedPrefs = await SharedPreferences.getInstance();
-    final token = sharedPrefs.getString(sharedPrefsAuthTokenKey);
+    final token = await _storage.read(key: _authTokenKey);
     final authTokenModel = AuthTokenMapper.stringToModel(token);
     Analytics.identifyUser(authTokenModel);
     Pushes.identifyUser(authTokenModel);
@@ -88,16 +87,14 @@ class AuthRepository with DisposeMixin {
   }
 
   Future<void> saveToken(AuthTokenModel authTokenModel) async {
-    final sharedPrefs = await SharedPreferences.getInstance();
-    await sharedPrefs.setString(sharedPrefsAuthTokenKey, authTokenModel.token);
+    await _storage.write(key: _authTokenKey, value: authTokenModel.token);
     await _refreshPermission();
     Analytics.identifyUser(authTokenModel);
     Pushes.identifyUser(authTokenModel);
   }
 
   Future<void> deleteToken() async {
-    final sharedPrefs = await SharedPreferences.getInstance();
-    await sharedPrefs.remove(sharedPrefsAuthTokenKey);
+    await _storage.delete(key: _authTokenKey);
     Pushes.clearUser();
   }
 }

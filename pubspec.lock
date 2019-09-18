@@ -179,6 +179,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_secure_storage:
+    dependency: "direct main"
+    description:
+      name: flutter_secure_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.3.1+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -387,13 +394,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.22.2"
-  shared_preferences:
-    dependency: "direct main"
-    description:
-      name: shared_preferences
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.3+4"
   shelf:
     dependency: transitive
     description:

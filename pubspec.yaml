@@ -34,7 +34,7 @@ dependencies:
   dio: ^2.1.7
 
   # Local storage
-  shared_preferences: ^0.5.3
+  flutter_secure_storage: ^3.3.1
 
   # Access an external url by browser
   url_launcher: ^5.1.2
