@@ -5,21 +5,12 @@ import 'package:com_cingulo_sample/screens/todo/todo_router.dart';
 import 'package:fluro/fluro.dart';
 
 class AppRouter {
-  static final _router = Router();
-  static bool _initialized = false;
+  static final router = Router();
 
-  static Router get router {
-    if (!_initialized) {
-      _init();
-    }
-    return _router;
-  }
-
-  static void _init() {
-    _initialized = true;
-    AccountsRouter(_router);
-    SettingsRouter(_router);
-    SplashRouter(_router);
-    TodoRouter(_router);
+  static void define() {
+    AccountsRouter.define();
+    SettingsRouter.define();
+    SplashRouter.define();
+    TodoRouter.define();
   }
 }
