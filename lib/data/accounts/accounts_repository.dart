@@ -20,7 +20,6 @@ class AccountsRepository {
     final response = await _accountsApi.logIn(request, LogInMapper.badRequestToModelError);
     final authToken = AuthTokenMapper.responseToModel(response);
     await _authRepository.saveToken(authToken); // Will call onAuthPermission()
-    AppDi.reset();
   }
 
   Future<void> signUp(SignUpModel signUpModel) async {
@@ -28,7 +27,6 @@ class AccountsRepository {
     final response = await _accountsApi.signUp(request, SignUpMapper.badRequestToModelError);
     final authToken = AuthTokenMapper.responseToModel(response);
     await _authRepository.saveToken(authToken); // Will call onAuthPermission()
-    AppDi.reset();
   }
 
   Future<void> logOut() async {

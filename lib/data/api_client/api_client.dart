@@ -1,4 +1,3 @@
-import 'package:com_cingulo_sample/data/api_client/api_dio.dart';
 import 'package:com_cingulo_sample/data/api_client/errors/bad_request_error.dart';
 import 'package:com_cingulo_sample/data/api_client/errors/unauthorized_error.dart';
 import 'package:com_cingulo_sample/data/api_client/interceptors/auth_interceptor.dart';
@@ -13,21 +12,21 @@ import 'package:dio/dio.dart';
 import 'package:inject/inject.dart';
 
 class ApiClient {
-  final ApiDio _apiDio;
+  final Dio _dio;
 
   @provide
   @singleton
-  ApiClient(this._apiDio) {
-    _apiDio.options.baseUrl = Env.data.apiBaseUrl;
-    _apiDio.options.connectTimeout = Duration(minutes: 3).inMilliseconds;
-    _apiDio.options.receiveTimeout = Duration(minutes: 3).inMilliseconds;
-    _apiDio.interceptors.add(LanguageInterceptor());
-    _apiDio.interceptors.add(InternalServerErrorInterceptor());
-    _apiDio.interceptors.add(AuthInterceptor());
-    _apiDio.interceptors.add(UnauthorizedInterceptor());
-    _apiDio.interceptors.add(BadRequestInterceptor());
+  ApiClient(this._dio) {
+    _dio.options.baseUrl = Env.data.apiBaseUrl;
+    _dio.options.connectTimeout = Duration(minutes: 3).inMilliseconds;
+    _dio.options.receiveTimeout = Duration(minutes: 3).inMilliseconds;
+    _dio.interceptors.add(LanguageInterceptor());
+    _dio.interceptors.add(InternalServerErrorInterceptor());
+    _dio.interceptors.add(AuthInterceptor());
+    _dio.interceptors.add(UnauthorizedInterceptor());
+    _dio.interceptors.add(BadRequestInterceptor());
     if (Env.data.debugApiClient) {
-      _apiDio.interceptors.add(LogInterceptor(
+      _dio.interceptors.add(LogInterceptor(
         requestHeader: true,
         requestBody: true,
         responseHeader: true,
@@ -38,7 +37,7 @@ class ApiClient {
 
   post(String path, dynamic data, Function badRequestToModelError) async {
     try {
-      return await _apiDio.post(path, data: data);
+      return await _dio.post(path, data: data);
     } on BadRequestError catch (error) {
       throw badRequestToModelError(error);
     } on UnauthorizedError {
@@ -50,7 +49,7 @@ class ApiClient {
 
   put(String path, dynamic data, Function badRequestToModelError) async {
     try {
-      return await _apiDio.put(path, data: data);
+      return await _dio.put(path, data: data);
     } on BadRequestError catch (error) {
       throw badRequestToModelError(error);
     } on UnauthorizedError {
@@ -62,7 +61,7 @@ class ApiClient {
 
   delete(String path) async {
     try {
-      return await _apiDio.delete(path);
+      return await _dio.delete(path);
     } on UnauthorizedError {
       throw UnauthenticatedError();
     } catch (error) {
@@ -72,7 +71,7 @@ class ApiClient {
 
   get(String path) async {
     try {
-      return await _apiDio.get(path);
+      return await _dio.get(path);
     } on UnauthorizedError {
       throw UnauthenticatedError();
     } catch (error) {

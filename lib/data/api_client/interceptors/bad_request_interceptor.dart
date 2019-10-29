@@ -4,13 +4,13 @@ import '../errors/bad_request_error.dart';
 
 class BadRequestInterceptor extends Interceptor {
   @override
-  onRequest(RequestOptions options) {
+  Future onRequest(RequestOptions options) async {
     options.queryParameters['platform'] = 'flutter';
     return options;
   }
 
   @override
-  onError(DioError error) {
+  Future onError(DioError error) async {
     if (error.response != null) {
       if (error.response.statusCode == 400) {
         return BadRequestError(error.response.data);

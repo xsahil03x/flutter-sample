@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 class UnauthorizedInterceptor extends Interceptor {
   @override
-  onError(DioError error) {
+  Future onError(DioError error) async {
     if (error.response?.statusCode == 401 || error.response?.statusCode == 403) {
       return UnauthorizedError();
     }

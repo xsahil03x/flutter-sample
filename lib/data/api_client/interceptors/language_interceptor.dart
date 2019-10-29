@@ -5,14 +5,14 @@ class LanguageInterceptor extends Interceptor {
   LanguageInterceptor();
 
   @override
-  onRequest(RequestOptions options) {
+  Future onRequest(RequestOptions options) async {
     final acceptLanguage = L10n.getCurrentLocale().toString().replaceAll('_', '-');
     options.headers['Accept-Language'] = acceptLanguage;
     return options;
   }
 
   @override
-  onError(DioError error) {
+  Future onError(DioError error) async {
     return null;
   }
 }
