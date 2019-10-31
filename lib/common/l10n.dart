@@ -26,7 +26,14 @@ class L10n {
   }
 
   static Locale getPlatformLocale() {
-    final List<String> codes = Platform.localeName.split('_');
+    String localeString = Platform.localeName;
+    localeString ??= '${defaultLocale.languageCode}-${defaultLocale.countryCode}';
+
+    List<String> codes = localeString.split('-');
+    if (codes.length == 1) {
+      codes = localeString.split('_');
+    }
+
     if (codes.length == 2) {
       return Locale(codes[0], codes[1]);
     } else if (codes.length == 1) {
