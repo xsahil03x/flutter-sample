@@ -1,6 +1,7 @@
+import 'package:com_cingulo_sample/app/app_router.dart';
 import 'package:com_cingulo_sample/common/widget.dart';
 import 'package:com_cingulo_sample/models/accounts/log_in_model.dart';
-import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
+import 'package:com_cingulo_sample/screens/splash/splash_route.dart';
 import 'package:com_cingulo_sample/widgets/buttons.dart';
 import 'package:com_cingulo_sample/widgets/fields.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _LogInFormState extends StatefulWBL<LogInForm, LogInFormBloc, LogInL10n> {
 
   void _onData(LogInFormBlocState state) {
     if (state is LogInFormBlocSuccess) {
-      SplashRouter.navigate(context);
+      AppRouter.navigateTo(context, SplashRoute.buildPath());
     }
   }
 

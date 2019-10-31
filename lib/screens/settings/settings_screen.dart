@@ -1,9 +1,10 @@
+import 'package:com_cingulo_sample/app/app_router.dart';
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:com_cingulo_sample/common/widget.dart';
 import 'package:com_cingulo_sample/env.dart';
 import 'package:com_cingulo_sample/screens/settings/settings_bloc.dart';
 import 'package:com_cingulo_sample/screens/settings/settings_l10n.dart';
-import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
+import 'package:com_cingulo_sample/screens/splash/splash_route.dart';
 import 'package:com_cingulo_sample/themes/sample_theme_dark.dart';
 import 'package:com_cingulo_sample/themes/sample_theme_light.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class _SettingsState extends StatefulWBL<SettingsScreen, SettingsBloc, SettingsL
 
   void _onData(SettingsBlocState state) {
     if (state is SettingsBlocLocaleChanged || state is SettingsBlocLoggedOut) {
-      SplashRouter.navigate(context);
+      AppRouter.navigateTo(context, SplashRoute.buildPath());
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:com_cingulo_sample/app/app_l10n.dart';
-import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_router.dart';
+import 'package:com_cingulo_sample/app/app_router.dart';
+import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_route.dart';
 import 'package:com_cingulo_sample/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class SignUpScreen extends StatelessWidget {
               Container(height: 24),
               ButtonClear(
                 text: l10n.logIn,
-                onPressed: () => LogInRouter.navigate(context),
+                onPressed: () => AppRouter.navigateTo(context, LogInRoute.buildPath()),
                 themeData: Theme.of(context),
               ),
             ],

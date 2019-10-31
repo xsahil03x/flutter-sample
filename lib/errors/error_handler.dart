@@ -6,7 +6,7 @@ import 'package:com_cingulo_sample/errors/api_error.dart';
 import 'package:com_cingulo_sample/errors/erros_l10n.dart';
 import 'package:com_cingulo_sample/errors/model_error.dart';
 import 'package:com_cingulo_sample/errors/unauthenticated_error.dart';
-import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
+import 'package:com_cingulo_sample/screens/splash/splash_route.dart';
 import 'package:com_cingulo_sample/widgets/dialogs.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +29,6 @@ class ErrorHandler {
     await di.accountsRepository.logOut();
     // Use App.navigatorKey.currentState because
     // Router.navigateTo does not work with App.navigatorKey.currentContext.
-    await App.navigatorKey.currentState.pushNamed(SplashRouter.route);
+    await App.navigatorKey.currentState.pushNamed(SplashRoute.buildPath());
   }
 }
