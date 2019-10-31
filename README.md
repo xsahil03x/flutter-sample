@@ -1,6 +1,7 @@
 # Cíngulo Flutter Sample
 
-[Checkout some screenshots here.](https://github.com/cingulo/flutter-sample/tree/develop/screenshots)
+[Check out a short demo video here.](https://github.com/cingulo/flutter-sample/blob/develop/screenshots/0_demo.mp4)  
+[Check out some screenshots here.](https://github.com/cingulo/flutter-sample/tree/develop/screenshots)
 
 A fully working sample Flutter app implementation. Give this repo a Star if you like it :)
 
