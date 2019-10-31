@@ -1,8 +1,11 @@
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:com_cingulo_sample/errors/erros_l10n.dart';
-import 'package:com_cingulo_sample/screens/accounts/accounts_l10n.dart';
+import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_l10n.dart';
+import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_l10n.dart';
 import 'package:com_cingulo_sample/screens/settings/settings_l10n.dart';
-import 'package:com_cingulo_sample/screens/todo/todo_l10n.dart';
+import 'package:com_cingulo_sample/screens/todo/add_task/add_task_l10n.dart';
+import 'package:com_cingulo_sample/screens/todo/edit_task/edit_task_l10n.dart';
+import 'package:com_cingulo_sample/screens/todo/todo/todo_l10n.dart';
 import 'package:com_cingulo_sample/widgets/widgets_l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +40,13 @@ class AppL10n {
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
     _AppL10nDelegate(),
-    ...AccountsL10n.delegates,
+    LogInL10n.delegate,
+    SignUpL10n.delegate,
     ErrorsL10n.delegate,
     SettingsL10n.delegate,
-    ...TodoL10n.delegates,
+    TodoL10n.delegate,
+    AddTaskL10n.delegate,
+    EditTaskL10n.delegate,
     WidgetsL10n.delegate,
   ];
 }

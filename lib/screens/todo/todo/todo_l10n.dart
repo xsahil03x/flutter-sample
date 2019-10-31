@@ -1,6 +1,4 @@
 import 'package:com_cingulo_sample/common/l10n.dart';
-import 'package:com_cingulo_sample/screens/todo/add_task/add_task_l10n.dart';
-import 'package:com_cingulo_sample/screens/todo/edit_task/edit_task_l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -28,11 +26,7 @@ class TodoL10n {
   String get title => _localizedValues[locale.toString()][_LKeys.title];
   String get empty => _localizedValues[locale.toString()][_LKeys.empty];
 
-  static const List<LocalizationsDelegate<dynamic>> delegates = [
-    _TodoL10nDelegate(),
-    AddTaskL10n.delegate,
-    EditTaskL10n.delegate,
-  ];
+  static const LocalizationsDelegate<dynamic> delegate = _TodoL10nDelegate();
 }
 
 class _TodoL10nDelegate extends L10nDelegate<TodoL10n> {

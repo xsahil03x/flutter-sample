@@ -56,7 +56,7 @@ class _EditTaskScreenState extends StatefulWBL<EditTaskScreen, EditTaskBloc, Edi
         _loaded = true;
       });
     } else if (state is EditTaskBlocSuccess) {
-      AppRouter.router.pop(context);
+      AppRouter.pop(context);
     }
   }
 

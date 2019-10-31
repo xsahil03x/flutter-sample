@@ -26,7 +26,7 @@ class App extends StatelessWidget {
           locale: snapshot.data.locale,
           theme: snapshot.data.themeData,
           onGenerateTitle: (BuildContext context) => Localizations.of<AppL10n>(context, AppL10n).title,
-          onGenerateRoute: AppRouter.router.generator,
+          onGenerateRoute: AppRouter.generator,
           builder: (context, widget) {
             WidgetsBinding.instance.addObserver(Refresh());
             return widget;

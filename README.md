@@ -16,6 +16,7 @@ A fully working sample Flutter app implementation. Give this repo a Star if you 
 - Multiple languages
 - Named routes
 - Named routes with parameters
+- Names routes with simple permission control
 - Analytics and pushes skeleton
 - We have published [the API](https://api-sample.cingulo.com/docs) so that you can test the app
 - Looks good but... it is still missing tests (TODO) :(
