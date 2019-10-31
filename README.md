@@ -22,42 +22,22 @@ A fully working sample Flutter app implementation. Give this repo a Star if you 
 - We have published [the API](https://api-sample.cingulo.com/docs) so that you can test the app
 - Looks good but... it is still missing tests (TODO) :(
 
-# Setup
+# Dependency Injection
 
-This project uses [Google Inject library](https://github.com/google/inject.dart) so it's necessary to download all submodules.
-
-- If you are cloning for the first time
+This project uses [google/inject.dart](https://github.com/google/inject.dart). You will have to clone it under vendor/inject.dart:
 
 ```
-    $ git clone --recurse-submodules -j8 https://github.com/cingulo/flutter-sample.git
+    $ cd <repository-root>
+    $ git clone https://github.com/google/inject.dart.git vendor/inject.dart
 ```
 
-- If you already clone but does not see submodules
-
-```
-    $ git submodule init
-    $ git submodule update
-```
-
-- If that still does not work
-
-```
-    $ git submodule add https://github.com/google/inject.dart.git vendor/inject.dart
-```
-
-- At last, build the dependency injection
+Use the command below to build the dependency injection:
 
 ```
     $ flutter packages pub run build_runner build --delete-conflicting-outputs
 ```
 
-- You can also use watch instead od build, but using watch is not necessary for most moments
-
-```
-    $ flutter packages pub run build_runner watch --delete-conflicting-outputs
-```
-
-- Done, you should now good to run the app.
+- Done, you should now be good to run the app.
 
 # API Docs
 
