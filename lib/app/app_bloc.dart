@@ -8,6 +8,7 @@ import 'package:rxdart/rxdart.dart';
  * and does not have a dispose method.
  */
 class AppBloc {
+  static AppBloc get instance => AppBloc();
   static final AppBloc _singleton = AppBloc._init();
   factory AppBloc() => _singleton;
 

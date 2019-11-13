@@ -24,9 +24,9 @@ class _SplashScreenState extends StatefulWB<SplashScreen, SplashBloc> {
 
   void _onData(SplashBlocState state) {
     if (state is SplashBlocAuthenticated) {
-      AppRouter.navigateTo(context, TodoRoute.buildPath());
+      AppRouter.instance.navigateTo(context, TodoRoute.buildPath());
     } else if (state is SplashBlocUnauthenticated) {
-      AppRouter.navigateTo(context, SignUpRoute.buildPath());
+      AppRouter.instance.navigateTo(context, SignUpRoute.buildPath());
     }
   }
 

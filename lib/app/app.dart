@@ -14,7 +14,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<AppState>(
-      stream: AppBloc().states$,
+      stream: AppBloc.instance.states$,
       initialData: AppBloc.initialState,
       builder: (context, snapshot) {
         return MaterialApp(
@@ -26,7 +26,7 @@ class App extends StatelessWidget {
           locale: snapshot.data.locale,
           theme: snapshot.data.themeData,
           onGenerateTitle: (BuildContext context) => Localizations.of<AppL10n>(context, AppL10n).title,
-          onGenerateRoute: AppRouter.generator,
+          onGenerateRoute: AppRouter.instance.generator,
           builder: (context, widget) {
             WidgetsBinding.instance.addObserver(Refresh());
             return widget;

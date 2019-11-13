@@ -31,13 +31,16 @@ This project uses [google/inject.dart](https://github.com/google/inject.dart). Y
     $ git clone https://github.com/google/inject.dart.git vendor/inject.dart
 ```
 
+Edit `vendor/inject.dart/package/inject_generator/pubspec.yaml` and under `dependencies` set `analyzer: ^0.36.4` so that it will work with Flutter 1.10.7+
+
 Use the command below to build the dependency injection:
 
 ```
     $ flutter packages pub run build_runner build --delete-conflicting-outputs
 ```
 
-- Done, you should now be good to run the app.
+- Done, you should now be good to run the app. 
+
 
 # API Docs
 

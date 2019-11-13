@@ -29,7 +29,7 @@ class _AddTaskDialogState extends StatefulWBL<AddTaskDialog, AddTaskBloc, AddTas
 
   void _onData(AddTaskBlocState state) {
     if (state is AddTaskBlocSuccess) {
-      AppRouter.pop(context);
+      AppRouter.instance.pop(context);
     }
   }
 

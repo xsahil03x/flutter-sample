@@ -48,7 +48,7 @@ class _SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10
 
   void _onData(SignUpFormBlocState state) {
     if (state is SignUpFormBlocSuccess) {
-      AppRouter.navigateTo(context, SplashRoute.buildPath());
+      AppRouter.instance.navigateTo(context, SplashRoute.buildPath());
     }
   }
 

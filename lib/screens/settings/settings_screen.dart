@@ -1,14 +1,14 @@
 import 'package:com_cingulo_sample/app/app_router.dart';
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:com_cingulo_sample/common/widget.dart';
-import 'package:com_cingulo_sample/env.dart';
-import 'package:com_cingulo_sample/screens/settings/settings_bloc.dart';
-import 'package:com_cingulo_sample/screens/settings/settings_l10n.dart';
 import 'package:com_cingulo_sample/screens/splash/splash_route.dart';
 import 'package:com_cingulo_sample/themes/sample_theme_dark.dart';
 import 'package:com_cingulo_sample/themes/sample_theme_light.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import 'settings_bloc.dart';
+import 'settings_l10n.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -18,6 +18,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsState extends StatefulWBL<SettingsScreen, SettingsBloc, SettingsL10n> {
   @override
   final SettingsBloc bloc = SettingsBloc();
+  String _appVersion = '';
 
   @override
   void initState() {
@@ -26,8 +27,10 @@ class _SettingsState extends StatefulWBL<SettingsScreen, SettingsBloc, SettingsL
   }
 
   void _onData(SettingsBlocState state) {
-    if (state is SettingsBlocLocaleChanged || state is SettingsBlocLoggedOut) {
-      AppRouter.navigateTo(context, SplashRoute.buildPath());
+    if (state is SettingsBlocLoaded) {
+      setState(() => _appVersion = state.appVersion);
+    } else if (state is SettingsBlocLocaleChanged || state is SettingsBlocLoggedOut) {
+      AppRouter.instance.navigateTo(context, SplashRoute.buildPath());
     }
   }
 
@@ -69,7 +72,7 @@ class _SettingsState extends StatefulWBL<SettingsScreen, SettingsBloc, SettingsL
     return Container(
       padding: EdgeInsets.all(16),
       child: Text(
-        l10n.version(Env.appVersion),
+        l10n.version(_appVersion),
         textAlign: TextAlign.center,
       ),
     );

@@ -8,9 +8,9 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
-  static final Router _router = Router();
-  static Route<dynamic> generator(RouteSettings routeSettings) => _router.generator(routeSettings);
-  static void pop(BuildContext context) => _router.pop(context);
+  static AppRouter get instance => AppRouter();
+  factory AppRouter() => _singleton;
+  static final AppRouter _singleton = AppRouter._init();
 
   static final List<AppRouteDefinition> routes = [
     SplashRoute(),
@@ -21,13 +21,23 @@ class AppRouter {
     SettingsRoute(),
   ];
 
-  static void define() {
+  static final Router _router = Router();
+
+  AppRouter._init() {
     for (var route in routes) {
-      _router.define(route.path, handler: Handler(handlerFunc: route.handlerFunc));
+      _router.define(
+        route.path,
+        handler: Handler(handlerFunc: route.handlerFunc),
+        transitionType: route.transition,
+      );
     }
   }
 
-  static Future<dynamic> navigateTo(
+  Route<dynamic> generator(RouteSettings routeSettings) => _router.generator(routeSettings);
+
+  void pop(BuildContext context) => _router.pop(context);
+
+  Future<dynamic> navigateTo(
     BuildContext context,
     String path, {
     bool replace,

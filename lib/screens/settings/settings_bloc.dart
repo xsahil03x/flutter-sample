@@ -2,11 +2,19 @@ import 'package:com_cingulo_sample/app/app_bloc.dart';
 import 'package:com_cingulo_sample/common/bloc.dart';
 import 'package:com_cingulo_sample/env.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info/package_info.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsBloc extends Bloc<SettingsBlocState> {
   SettingsBloc() : super(states$$: PublishSubject<SettingsBlocState>());
+
+  @override
+  void postInit() async {
+    super.postInit();
+    final packageInfo = await PackageInfo.fromPlatform();
+    states$$.add(SettingsBlocLoaded(packageInfo.version));
+  }
 
   void hiring() async {
     final url = Env.data.hiringUrl;
@@ -30,12 +38,12 @@ class SettingsBloc extends Bloc<SettingsBlocState> {
   }
 
   void setLanguage(Locale locale) {
-    AppBloc().setLocale(locale);
+    AppBloc.instance.setLocale(locale);
     states$$?.add(SettingsBlocLocaleChanged());
   }
 
   void setThemeData(ThemeData themeData) {
-    AppBloc().setThemeData(themeData);
+    AppBloc.instance.setThemeData(themeData);
     states$$?.add(SettingsBlocLocaleChanged());
   }
 
@@ -46,6 +54,12 @@ class SettingsBloc extends Bloc<SettingsBlocState> {
 }
 
 abstract class SettingsBlocState extends BlocState {}
+
+class SettingsBlocLoaded extends SettingsBlocState {
+  String appVersion;
+
+  SettingsBlocLoaded(this.appVersion);
+}
 
 class SettingsBlocLocaleChanged extends SettingsBlocState {}
 

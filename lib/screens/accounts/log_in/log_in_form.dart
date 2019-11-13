@@ -33,7 +33,7 @@ class _LogInFormState extends StatefulWBL<LogInForm, LogInFormBloc, LogInL10n> {
 
   void _onData(LogInFormBlocState state) {
     if (state is LogInFormBlocSuccess) {
-      AppRouter.navigateTo(context, SplashRoute.buildPath());
+      AppRouter.instance.navigateTo(context, SplashRoute.buildPath());
     }
   }
 
