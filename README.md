@@ -1,9 +1,9 @@
 # Cíngulo Flutter Sample
 
-|           | master                                                                                                                                                                   | develop                                                                                                                                                                   |
-|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Travis CI | [![Build Status on master](https://travis-ci.com/cingulo/cingulo-api.svg?token=S6fmxWi658YBt67BpxHk&branch=master)](https://travis-ci.com/cingulo/cingulo-api)           |  [![Build Status on develop](https://travis-ci.com/cingulo/cingulo-api.svg?token=S6fmxWi658YBt67BpxHk&branch=develop)](https://travis-ci.com/cingulo/cingulo-api)         |
-| Coveralls | [![Coverage Status on master](https://coveralls.io/repos/github/cingulo/cingulo-api/badge.svg?branch=develop&t=OUomCN)](https://coveralls.io/github/cingulo/cingulo-api) | [![Coverage Status on develop](https://coveralls.io/repos/github/cingulo/cingulo-api/badge.svg?branch=develop&t=OUomCN)](https://coveralls.io/github/cingulo/cingulo-api) |
+| Status    | develop                                                                                                                                                                    |
+|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Travis CI | [![Build Status](https://travis-ci.com/cingulo/flutter-sample.svg?branch=develop)](https://travis-ci.com/cingulo/flutter-sample)                                           |
+| Coveralls | [![Coverage Status](https://coveralls.io/repos/github/cingulo/flutter-sample/badge.svg?branch=adjusts)](https://coveralls.io/github/cingulo/flutter-sample?branch=adjusts) |
 
 [Check out a short demo video here.](https://github.com/cingulo/flutter-sample/blob/develop/screenshots/0_demo.mp4)  
 [Check out some screenshots here.](https://github.com/cingulo/flutter-sample/tree/develop/screenshots)
