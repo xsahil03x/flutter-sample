@@ -65,7 +65,7 @@ packages:
     source: hosted
     version: "1.2.1"
   build_runner:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: build_runner
       url: "https://pub.dartlang.org"
@@ -154,7 +154,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.4"
+    version: "3.0.7"
   fixnum:
     dependency: transitive
     description:
@@ -248,7 +248,7 @@ packages:
     source: hosted
     version: "2.1.4"
   inject:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       path: "vendor/inject.dart/package/inject"
       relative: true
@@ -489,7 +489,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.5"
+    version: "5.2.7"
   url_launcher_platform_interface:
     dependency: transitive
     description:

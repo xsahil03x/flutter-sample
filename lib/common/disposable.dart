@@ -62,16 +62,18 @@ import 'package:flutter/cupertino.dart';
  * 
  */
 
-abstract class DisposableMixin {
+abstract class ADisposableMixin {
   @protected
+  @visibleForTesting
   List<Function()> disposableFunctions = [];
 
   @mustCallSuper
   void disposable() => disposableFunctions = _dispose(disposableFunctions);
 }
 
-abstract class DisposeMixin {
+abstract class ADisposeMixin {
   @protected
+  @visibleForTesting
   List<Function()> disposableFunctions = [];
 
   @mustCallSuper

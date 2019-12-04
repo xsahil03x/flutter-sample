@@ -1,10 +1,10 @@
 import 'package:com_cingulo_sample/app/app_di.dart';
-import 'package:com_cingulo_sample/app/app_router.dart';
+import 'package:com_cingulo_sample/common/route.dart';
 import 'package:com_cingulo_sample/screens/todo/todo/todo_screen.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
-class TodoRoute extends AppRouteDefinition {
+class TodoRoute extends ARoute {
   static String _path = '/todo/todo';
   static String buildPath() => _path;
 
@@ -19,7 +19,7 @@ class TodoRoute extends AppRouteDefinition {
 
   @override
   Future<bool> hasPermission(Map<String, List<String>> params) async {
-    final di = await AppDi.instance();
+    final di = await AppDi.instance;
     final permission = await di.authRepository.getPermission();
     return permission.isAuthenticated;
   }

@@ -5,16 +5,19 @@ import 'package:flutter/material.dart';
  * Classes using DependencyInjectionMixin must call 
  * inject() in the constructor.
  */
-abstract class DependencyInjectionMixin {
+abstract class ADependencyInjectionMixin {
   @protected
+  @visibleForTesting
   AppDi di;
 
   @protected
+  @visibleForTesting
   Future<void> inject() async {
-    di = await AppDi.instance();
+    di = await AppDi.instance;
     diReady();
   }
 
   @protected
+  @visibleForTesting
   void diReady() {}
 }

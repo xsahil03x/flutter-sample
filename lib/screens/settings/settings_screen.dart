@@ -1,5 +1,5 @@
+import 'package:com_cingulo_sample/app/app_l10n.dart';
 import 'package:com_cingulo_sample/app/app_router.dart';
-import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:com_cingulo_sample/common/widget.dart';
 import 'package:com_cingulo_sample/screens/splash/splash_route.dart';
 import 'package:com_cingulo_sample/themes/sample_theme_dark.dart';
@@ -15,7 +15,7 @@ class SettingsScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _SettingsState();
 }
 
-class _SettingsState extends StatefulWBL<SettingsScreen, SettingsBloc, SettingsL10n> {
+class _SettingsState extends AStatefulWBL<SettingsScreen, SettingsBloc, SettingsL10n> {
   @override
   final SettingsBloc bloc = SettingsBloc();
   String _appVersion = '';
@@ -30,7 +30,7 @@ class _SettingsState extends StatefulWBL<SettingsScreen, SettingsBloc, SettingsL
     if (state is SettingsBlocLoaded) {
       setState(() => _appVersion = state.appVersion);
     } else if (state is SettingsBlocLocaleChanged || state is SettingsBlocLoggedOut) {
-      AppRouter.instance.navigateTo(context, SplashRoute.buildPath());
+      AppRouter.instance.navigateTo(SplashRoute.buildPath());
     }
   }
 
@@ -45,8 +45,8 @@ class _SettingsState extends StatefulWBL<SettingsScreen, SettingsBloc, SettingsL
           _item(l10n.hiring, bloc.hiring),
           _item(l10n.simulateExpiredAuthToken, bloc.simulateExpiredAuthToken),
           _item(l10n.simulateInternalServerError, bloc.simulateInternalServerError),
-          _item(l10n.languageEnUs, () => bloc.setLanguage(L10n.enUS)),
-          _item(l10n.languagePtBr, () => bloc.setLanguage(L10n.ptBR)),
+          _item(l10n.languageEnUs, () => bloc.setLanguage(AppL10n.enUS)),
+          _item(l10n.languagePtBr, () => bloc.setLanguage(AppL10n.ptBR)),
           _item(l10n.themeLight, () => bloc.setThemeData(SampleThemeLight.themeData)),
           _item(l10n.themeDark, () => bloc.setThemeData(SampleThemeDark.themeData)),
           _item(l10n.logout, bloc.logout),

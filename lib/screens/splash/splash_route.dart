@@ -1,9 +1,9 @@
-import 'package:com_cingulo_sample/app/app_router.dart';
+import 'package:com_cingulo_sample/common/route.dart';
 import 'package:com_cingulo_sample/screens/splash/splash_screen.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
-class SplashRoute extends AppRouteDefinition {
+class SplashRoute extends ARoute {
   static String _path = '/splash';
   static String buildPath() => _path;
 

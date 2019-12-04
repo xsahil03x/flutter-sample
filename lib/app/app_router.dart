@@ -1,3 +1,4 @@
+import 'package:com_cingulo_sample/common/route.dart';
 import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_route.dart';
 import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_route.dart';
 import 'package:com_cingulo_sample/screens/settings/settings_route.dart';
@@ -7,12 +8,14 @@ import 'package:com_cingulo_sample/screens/todo/todo/todo_route.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
+import 'app.dart';
+
 class AppRouter {
   static AppRouter get instance => AppRouter();
   factory AppRouter() => _singleton;
   static final AppRouter _singleton = AppRouter._init();
 
-  static final List<AppRouteDefinition> routes = [
+  static final List<ARoute> routes = [
     SplashRoute(),
     SignUpRoute(),
     LogInRoute(),
@@ -21,7 +24,7 @@ class AppRouter {
     SettingsRoute(),
   ];
 
-  static final Router _router = Router();
+  final Router _router = Router();
 
   AppRouter._init() {
     for (var route in routes) {
@@ -38,40 +41,37 @@ class AppRouter {
   void pop(BuildContext context) => _router.pop(context);
 
   Future<dynamic> navigateTo(
-    BuildContext context,
     String path, {
     bool replace,
     bool clearStack,
     TransitionType transition,
     Duration transitionDuration,
     RouteTransitionsBuilder transitionBuilder,
+    BuildContext context,
   }) async {
     final match = _router.match(path);
     if (match != null) {
       final route = routes.firstWhere((r) => r.path == match.route.route);
       final hasPermission = await route.hasPermission(match.parameters);
       if (hasPermission) {
-        return _router.navigateTo(
-          context,
-          path,
-          replace: replace ?? route.replace,
-          clearStack: clearStack ?? route.clearStack,
-          transition: transition ?? route.transition,
-          transitionDuration: transitionDuration ?? route.transitionDuration,
-          transitionBuilder: transitionBuilder ?? route.transitionBuilder,
-        );
+        if (context != null) {
+          return _router.navigateTo(
+            context,
+            path,
+            replace: replace ?? route.replace,
+            clearStack: clearStack ?? route.clearStack,
+            transition: transition ?? route.transition,
+            transitionDuration: transitionDuration ?? route.transitionDuration,
+            transitionBuilder: transitionBuilder ?? route.transitionBuilder,
+          );
+        } else if (clearStack ?? route.clearStack) {
+          return App.navigatorKey.currentState.pushNamedAndRemoveUntil(path, (check) => false);
+        } else if (replace ?? route.replace) {
+          return App.navigatorKey.currentState.pushReplacementNamed(path);
+        } else {
+          return App.navigatorKey.currentState.pushNamed(path);
+        }
       }
     }
   }
-}
-
-abstract class AppRouteDefinition {
-  String path;
-  bool replace = false;
-  bool clearStack = false;
-  TransitionType transition;
-  Duration transitionDuration = Duration(milliseconds: 250);
-  RouteTransitionsBuilder transitionBuilder;
-  Widget handlerFunc(BuildContext context, Map<String, dynamic> params);
-  Future<bool> hasPermission(Map<String, List<String>> params);
 }

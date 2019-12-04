@@ -1,15 +1,16 @@
-import 'package:com_cingulo_sample/common/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'dependency_injection.dart';
 import 'disposable.dart';
 
-abstract class Bloc<T extends BlocState> with DisposeMixin, DependencyInjectionMixin {
+abstract class ABloc<T extends ABlocState> with ADisposeMixin, ADependencyInjectionMixin {
   @protected
+  @visibleForTesting
   Subject<T> states$$;
   Stream<T> get states$ => states$$.stream;
 
-  Bloc({@required Subject<T> states$$}) {
+  ABloc({@required Subject<T> states$$}) {
     this.states$$ = states$$;
     disposableFunctions.addAll([states$$.close, () => this.states$$ = null]);
     init();
@@ -41,4 +42,4 @@ abstract class Bloc<T extends BlocState> with DisposeMixin, DependencyInjectionM
   }
 }
 
-abstract class BlocState {}
+abstract class ABlocState {}

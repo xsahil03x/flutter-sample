@@ -2,7 +2,7 @@ import 'package:com_cingulo_sample/common/bloc.dart';
 import 'package:com_cingulo_sample/models/todo/task_model.dart';
 import 'package:rxdart/rxdart.dart';
 
-class TodoBloc extends Bloc<TodoBlocState> {
+class TodoBloc extends ABloc<TodoBlocState> {
   TodoBloc() : super(states$$: BehaviorSubject<TodoBlocState>.seeded(TodoBlocLoading()));
 
   @override
@@ -19,7 +19,7 @@ class TodoBloc extends Bloc<TodoBlocState> {
   }
 }
 
-abstract class TodoBlocState extends BlocState {}
+abstract class TodoBlocState extends ABlocState {}
 
 class TodoBlocLoading extends TodoBlocState {}
 

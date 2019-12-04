@@ -2,7 +2,7 @@ import 'package:com_cingulo_sample/common/bloc.dart';
 import 'package:com_cingulo_sample/models/todo/task_model.dart';
 import 'package:rxdart/rxdart.dart';
 
-class EditTaskBloc extends Bloc<EditTaskBlocState> {
+class EditTaskBloc extends ABloc<EditTaskBlocState> {
   final String id;
 
   EditTaskBloc(this.id) : super(states$$: BehaviorSubject<EditTaskBlocState>.seeded(EditTaskBlocLoading()));
@@ -30,7 +30,7 @@ class EditTaskBloc extends Bloc<EditTaskBlocState> {
   }
 }
 
-abstract class EditTaskBlocState extends BlocState {}
+abstract class EditTaskBlocState extends ABlocState {}
 
 class EditTaskBlocLoading extends EditTaskBlocState {}
 

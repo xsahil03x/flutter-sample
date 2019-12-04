@@ -1,35 +1,32 @@
-import 'package:com_cingulo_sample/app/app_di.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/subjects.dart';
 
-class Refresh extends WidgetsBindingObserver {
-  static final Refresh _singleton = Refresh._init();
-  factory Refresh() => _singleton;
-
-  String _lastDailyEmitted;
+class AppRefresh extends WidgetsBindingObserver {
+  static AppRefresh get instance => AppRefresh();
+  static final AppRefresh _singleton = AppRefresh._init();
+  factory AppRefresh() => _singleton;
 
   // Emits an event once a day.
   PublishSubject<void> _daily$$ = PublishSubject<void>();
   Stream<void> get daily$ => _daily$$.stream;
 
-  Refresh._init() {
+  String _lastDailyEmitted;
+
+  AppRefresh._init() {
     _lastDailyEmitted = _getDate();
   }
 
-  String _getDate({int addDays = 0}) {
-    final date = DateTime.now().add(Duration(days: addDays));
-    final fmt = DateFormat('yyyy-MM-dd');
-    return fmt.format(date);
+  String _getDate() {
+    final now = DateTime.now();
+    return DateFormat('yyyy-MM-dd').format(now);
   }
 
-  void _check() async {
+  void _dailyEvent() async {
     final today = _getDate();
-    if (today != _lastDailyEmitted) {
+    if (_lastDailyEmitted != today) {
       _lastDailyEmitted = today;
       _daily$$.add(null);
-      final di = await AppDi.instance();
-      await di.authRepository.refresh();
     }
   }
 
@@ -37,7 +34,7 @@ class Refresh extends WidgetsBindingObserver {
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     switch (state) {
       case AppLifecycleState.resumed:
-        _check();
+        _dailyEvent();
         break;
       case AppLifecycleState.inactive:
       case AppLifecycleState.paused:

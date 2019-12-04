@@ -1,10 +1,10 @@
-import 'package:com_cingulo_sample/app/app_router.dart';
+import 'package:com_cingulo_sample/common/route.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 import 'sign_up_screen.dart';
 
-class SignUpRoute extends AppRouteDefinition {
+class SignUpRoute extends ARoute {
   static String _path = '/sign-up';
   static String buildPath() => _path;
 

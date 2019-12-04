@@ -7,7 +7,7 @@ import 'package:com_cingulo_sample/models/todo/task_model.dart';
 import 'package:inject/inject.dart';
 import 'package:rxdart/rxdart.dart';
 
-class TodoRepository extends Repository {
+class TodoRepository extends ARepository {
   final PublishSubject<void> _tasksUpdated$$ = PublishSubject<void>();
   Stream<void> get tasksUpdated$ => _tasksUpdated$$.stream;
 

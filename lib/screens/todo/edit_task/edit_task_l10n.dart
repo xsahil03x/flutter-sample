@@ -1,3 +1,4 @@
+import 'package:com_cingulo_sample/app/app_l10n.dart';
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class EditTaskL10n {
   EditTaskL10n(this.locale);
 
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    L10n.enUS.toString(): {
+    AppL10n.enUS.toString(): {
       _LKeys.title: "Task",
       _LKeys.btnDelete: "Delete",
       _LKeys.deleteConfirmTitle: "Are you sure?",
@@ -33,7 +34,7 @@ class EditTaskL10n {
       _LKeys.checkboxDoneLabel: "Done",
       _LKeys.btnSave: "Save",
     },
-    L10n.ptBR.toString(): {
+    AppL10n.ptBR.toString(): {
       _LKeys.title: "Tarefa",
       _LKeys.btnDelete: "Deletar",
       _LKeys.deleteConfirmTitle: "Tem certeza?",
@@ -61,11 +62,9 @@ class EditTaskL10n {
   static const LocalizationsDelegate<dynamic> delegate = _EditTaskL10nDelegate();
 }
 
-class _EditTaskL10nDelegate extends L10nDelegate<EditTaskL10n> {
+class _EditTaskL10nDelegate extends AL10nDelegate<EditTaskL10n> {
   const _EditTaskL10nDelegate();
 
   @override
-  Future<EditTaskL10n> load(Locale locale) {
-    return SynchronousFuture<EditTaskL10n>(EditTaskL10n(locale));
-  }
+  Future<EditTaskL10n> load(Locale locale) => SynchronousFuture<EditTaskL10n>(EditTaskL10n(locale));
 }

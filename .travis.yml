@@ -1,0 +1,35 @@
+language: generic
+
+git:
+  depth: false
+
+jobs:
+  include:
+    - stage: test
+      os: linux
+      dist: bionic
+      install:
+        - |
+          if [ ! -d "$HOME/flutter/bin" ]; then
+            cd $HOME
+            git clone https://github.com/flutter/flutter.git --branch v1.10.7 --single-branch
+          fi
+        - export PATH=$HOME/flutter/bin:$PATH
+        - cd $TRAVIS_BUILD_DIR
+        - flutter doctor
+        - flutter packages get
+        - gem install coveralls-lcov
+      before_script:
+        - cd $TRAVIS_BUILD_DIR
+      script:
+        - flutter packages pub run build_runner build --build-filter "lib/data/*/*.dart" --delete-conflicting-outputs
+        - flutter packages pub run build_runner build --build-filter "lib/app/*.dart" --delete-conflicting-outputs
+        - flutter test --coverage
+      after_success:
+        - coveralls-lcov -s travis-pro -t SHO6wCgEltTipILPKVu9ok08zTOZ8yPjH coverage/lcov.info
+
+cache:
+  bundler: true
+  directories:
+    - $HOME/flutter
+    - $HOME/.pub-cache

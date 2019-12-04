@@ -1,3 +1,4 @@
+import 'package:com_cingulo_sample/app/app_l10n.dart';
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ enum _LKeys {
 
 class SettingsL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    L10n.enUS.toString(): {
+    AppL10n.enUS.toString(): {
       _LKeys.title: "Settings",
       _LKeys.hiring: "We are hiring!",
       _LKeys.simulateExpiredAuthToken: "Simulate expired auth token",
@@ -29,7 +30,7 @@ class SettingsL10n {
       _LKeys.logout: "Log out",
       _LKeys.version: "Version {version}",
     },
-    L10n.ptBR.toString(): {
+    AppL10n.ptBR.toString(): {
       _LKeys.title: "Configurações",
       _LKeys.hiring: "Estamos contratando!",
       _LKeys.simulateExpiredAuthToken: "Simular autenticação expirada",
@@ -64,11 +65,9 @@ class SettingsL10n {
   static const LocalizationsDelegate<dynamic> delegate = _SettingsL10nDelegate();
 }
 
-class _SettingsL10nDelegate extends L10nDelegate<SettingsL10n> {
+class _SettingsL10nDelegate extends AL10nDelegate<SettingsL10n> {
   const _SettingsL10nDelegate();
 
   @override
-  Future<SettingsL10n> load(Locale locale) {
-    return SynchronousFuture<SettingsL10n>(SettingsL10n(locale));
-  }
+  Future<SettingsL10n> load(Locale locale) => SynchronousFuture<SettingsL10n>(SettingsL10n(locale));
 }

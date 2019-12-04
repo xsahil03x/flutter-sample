@@ -1,3 +1,4 @@
+import 'package:com_cingulo_sample/app/app_l10n.dart';
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +12,13 @@ enum _LKeys {
 
 class LogInL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    L10n.enUS.toString(): {
+    AppL10n.enUS.toString(): {
       _LKeys.title: "Log In",
       _LKeys.formUsername: "Username or email",
       _LKeys.formPassword: "Password",
       _LKeys.formSubmit: "Log In",
     },
-    L10n.ptBR.toString(): {
+    AppL10n.ptBR.toString(): {
       _LKeys.title: "Acesse",
       _LKeys.formUsername: "Nome de usuário ou email",
       _LKeys.formPassword: "Senha",
@@ -37,11 +38,9 @@ class LogInL10n {
   static const LocalizationsDelegate<dynamic> delegate = _LogInL10nDelegate();
 }
 
-class _LogInL10nDelegate extends L10nDelegate<LogInL10n> {
+class _LogInL10nDelegate extends AL10nDelegate<LogInL10n> {
   const _LogInL10nDelegate();
 
   @override
-  Future<LogInL10n> load(Locale locale) {
-    return SynchronousFuture<LogInL10n>(LogInL10n(locale));
-  }
+  Future<LogInL10n> load(Locale locale) => SynchronousFuture<LogInL10n>(LogInL10n(locale));
 }

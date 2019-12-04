@@ -1,7 +1,7 @@
 import 'package:com_cingulo_sample/common/bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
-class SplashBloc extends Bloc<SplashBlocState> {
+class SplashBloc extends ABloc<SplashBlocState> {
   SplashBloc() : super(states$$: BehaviorSubject<SplashBlocState>.seeded(SplashBlocLoading()));
 
   @override
@@ -19,7 +19,7 @@ class SplashBloc extends Bloc<SplashBlocState> {
   }
 }
 
-abstract class SplashBlocState extends BlocState {}
+abstract class SplashBlocState extends ABlocState {}
 
 class SplashBlocLoading extends SplashBlocState {}
 

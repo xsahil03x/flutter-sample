@@ -1,3 +1,4 @@
+import 'package:com_cingulo_sample/app/app_l10n.dart';
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,11 @@ class TodoL10n {
   TodoL10n(this.locale);
 
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    L10n.enUS.toString(): {
+    AppL10n.enUS.toString(): {
       _LKeys.title: "Cíngulo Flutter Sample",
       _LKeys.empty: "Start by creating a task",
     },
-    L10n.ptBR.toString(): {
+    AppL10n.ptBR.toString(): {
       _LKeys.title: "Exemplo em Flutter do Cíngulo",
       _LKeys.empty: "Comece criando uma tarefa",
     },
@@ -29,11 +30,9 @@ class TodoL10n {
   static const LocalizationsDelegate<dynamic> delegate = _TodoL10nDelegate();
 }
 
-class _TodoL10nDelegate extends L10nDelegate<TodoL10n> {
+class _TodoL10nDelegate extends AL10nDelegate<TodoL10n> {
   const _TodoL10nDelegate();
 
   @override
-  Future<TodoL10n> load(Locale locale) {
-    return SynchronousFuture<TodoL10n>(TodoL10n(locale));
-  }
+  Future<TodoL10n> load(Locale locale) => SynchronousFuture<TodoL10n>(TodoL10n(locale));
 }

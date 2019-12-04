@@ -22,7 +22,7 @@ class EditTaskScreen extends StatefulWidget {
   }
 }
 
-class _EditTaskScreenState extends StatefulWBL<EditTaskScreen, EditTaskBloc, EditTaskL10n> {
+class _EditTaskScreenState extends AStatefulWBL<EditTaskScreen, EditTaskBloc, EditTaskL10n> {
   @override
   final EditTaskBloc bloc;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

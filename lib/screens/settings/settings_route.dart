@@ -1,9 +1,9 @@
 import 'package:com_cingulo_sample/app/app_di.dart';
-import 'package:com_cingulo_sample/app/app_router.dart';
+import 'package:com_cingulo_sample/common/route.dart';
 import 'package:com_cingulo_sample/screens/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 
-class SettingsRoute extends AppRouteDefinition {
+class SettingsRoute extends ARoute {
   static String _path = '/settings';
   static String buildPath() => _path;
 
@@ -12,7 +12,7 @@ class SettingsRoute extends AppRouteDefinition {
 
   @override
   Future<bool> hasPermission(Map<String, List<String>> params) async {
-    final di = await AppDi.instance();
+    final di = await AppDi.instance;
     final permission = await di.authRepository.getPermission();
     return permission.isAuthenticated;
   }

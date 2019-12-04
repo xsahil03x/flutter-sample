@@ -6,7 +6,7 @@ import 'package:package_info/package_info.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SettingsBloc extends Bloc<SettingsBlocState> {
+class SettingsBloc extends ABloc<SettingsBlocState> {
   SettingsBloc() : super(states$$: PublishSubject<SettingsBlocState>());
 
   @override
@@ -53,7 +53,7 @@ class SettingsBloc extends Bloc<SettingsBlocState> {
   }
 }
 
-abstract class SettingsBlocState extends BlocState {}
+abstract class SettingsBlocState extends ABlocState {}
 
 class SettingsBlocLoaded extends SettingsBlocState {
   String appVersion;

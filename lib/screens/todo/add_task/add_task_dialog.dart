@@ -12,7 +12,7 @@ class AddTaskDialog extends StatefulWidget {
   State<StatefulWidget> createState() => _AddTaskDialogState();
 }
 
-class _AddTaskDialogState extends StatefulWBL<AddTaskDialog, AddTaskBloc, AddTaskL10n> {
+class _AddTaskDialogState extends AStatefulWBL<AddTaskDialog, AddTaskBloc, AddTaskL10n> {
   @override
   final AddTaskBloc bloc = AddTaskBloc();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

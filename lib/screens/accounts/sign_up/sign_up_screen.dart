@@ -26,7 +26,7 @@ class SignUpScreen extends StatelessWidget {
               Container(height: 24),
               ButtonClear(
                 text: l10n.logIn,
-                onPressed: () => AppRouter.instance.navigateTo(context, LogInRoute.buildPath()),
+                onPressed: () => AppRouter.instance.navigateTo(LogInRoute.buildPath()),
                 themeData: Theme.of(context),
               ),
             ],

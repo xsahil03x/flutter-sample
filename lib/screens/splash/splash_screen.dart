@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends StatefulWB<SplashScreen, SplashBloc> {
+class _SplashScreenState extends AStatefulWB<SplashScreen, SplashBloc> {
   @override
   final SplashBloc bloc = SplashBloc();
 
@@ -24,9 +24,9 @@ class _SplashScreenState extends StatefulWB<SplashScreen, SplashBloc> {
 
   void _onData(SplashBlocState state) {
     if (state is SplashBlocAuthenticated) {
-      AppRouter.instance.navigateTo(context, TodoRoute.buildPath());
+      AppRouter.instance.navigateTo(TodoRoute.buildPath());
     } else if (state is SplashBlocUnauthenticated) {
-      AppRouter.instance.navigateTo(context, SignUpRoute.buildPath());
+      AppRouter.instance.navigateTo(SignUpRoute.buildPath());
     }
   }
 

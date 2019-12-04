@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:com_cingulo_sample/common/analytics.dart';
+import 'package:com_cingulo_sample/app/app_analytics.dart';
+import 'package:com_cingulo_sample/app/app_pushes.dart';
 import 'package:com_cingulo_sample/common/disposable.dart';
-import 'package:com_cingulo_sample/common/pushes.dart';
 import 'package:com_cingulo_sample/data/auth/auth_api.dart';
 import 'package:com_cingulo_sample/data/auth/mapper/auth_token_mapper.dart';
 import 'package:com_cingulo_sample/errors/error_handler.dart';
-import 'package:com_cingulo_sample/errors/model_error.dart';
 import 'package:com_cingulo_sample/models/auth/auth_permission_model.dart';
 import 'package:com_cingulo_sample/models/auth/auth_token_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -17,7 +16,7 @@ import 'package:rxdart/rxdart.dart';
  * This is the only repository that must not extend Repository because
  * Repository uses it for onAuthPermission and onRefreshDaily.
  */
-class AuthRepository with DisposeMixin {
+class AuthRepository with ADisposeMixin {
   final FlutterSecureStorage _storage = FlutterSecureStorage();
   final String _authTokenKey = 'AuthRepository.authToken';
   final AuthApi _authApi;
@@ -58,10 +57,8 @@ class AuthRepository with DisposeMixin {
       final response = await _authApi.refreshToken(request, AuthTokenMapper.badRequestToModelError);
       final newToken = AuthTokenMapper.responseToModel(response);
       await saveToken(newToken); // Will call _refreshPermission()
-    } on ModelError {
-      ErrorHandler.handleUnauthenticatedError();
     } catch (error, stackTrace) {
-      ErrorHandler.handle(error, stackTrace: stackTrace);
+      ErrorHandler.instance.handle(error, stackTrace: stackTrace);
     }
   }
 
@@ -81,20 +78,18 @@ class AuthRepository with DisposeMixin {
   Future<AuthTokenModel> getToken() async {
     final token = await _storage.read(key: _authTokenKey);
     final authTokenModel = AuthTokenMapper.stringToModel(token);
-    Analytics.identifyUser(authTokenModel);
-    Pushes.identifyUser(authTokenModel);
     return authTokenModel;
   }
 
   Future<void> saveToken(AuthTokenModel authTokenModel) async {
     await _storage.write(key: _authTokenKey, value: authTokenModel.token);
     await _refreshPermission();
-    Analytics.identifyUser(authTokenModel);
-    Pushes.identifyUser(authTokenModel);
   }
 
   Future<void> deleteToken() async {
     await _storage.delete(key: _authTokenKey);
-    Pushes.clearUser();
+    await _refreshPermission();
+    AppAnalytics.instance.unsetUser();
+    AppPushes.instance.unsetUser();
   }
 }

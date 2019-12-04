@@ -1,17 +1,18 @@
 import 'dart:async';
 
-import 'package:com_cingulo_sample/common/dependency_injection.dart';
-import 'package:com_cingulo_sample/common/disposable.dart';
-import 'package:com_cingulo_sample/common/refresh.dart';
-import 'package:com_cingulo_sample/models/auth/auth_permission_model.dart';
 import 'package:flutter/widgets.dart';
 
-abstract class Repository with DisposableMixin, DependencyInjectionMixin {
+import '../app/app_refresh.dart';
+import '../models/auth/auth_permission_model.dart';
+import 'dependency_injection.dart';
+import 'disposable.dart';
+
+abstract class ARepository with ADisposableMixin, ADependencyInjectionMixin {
   @protected
   Completer<void> _initialized = Completer<void>();
   Future<void> get initialized => _initialized.future;
 
-  Repository() {
+  ARepository() {
     init();
   }
 
@@ -24,9 +25,9 @@ abstract class Repository with DisposableMixin, DependencyInjectionMixin {
   @override
   @mustCallSuper
   void diReady() async {
-    final subsPermission = di.authRepository.permission$.listen(_onAuthPermission);
-    final subsDaily = Refresh().daily$.listen((_) => onRefreshDaily());
-    disposableFunctions.addAll([subsPermission.cancel, subsDaily.cancel]);
+    disposableFunctions
+      ..add(di.authRepository.permission$.listen(_onAuthPermission).cancel)
+      ..add(AppRefresh.instance.daily$.listen((_) => onRefreshDaily()).cancel);
     await di.authRepository.initialized;
     postInit();
   }

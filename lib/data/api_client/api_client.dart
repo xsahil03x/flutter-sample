@@ -42,9 +42,10 @@ class ApiClient {
       throw badRequestToModelError(error);
     } on UnauthorizedError {
       throw UnauthenticatedError();
-    } catch (error) {
+    } on DioError {
       throw ApiError();
     }
+    // You may also want to do some special treatment for InternalServerError
   }
 
   put(String path, dynamic data, Function badRequestToModelError) async {
@@ -54,9 +55,10 @@ class ApiClient {
       throw badRequestToModelError(error);
     } on UnauthorizedError {
       throw UnauthenticatedError();
-    } catch (error) {
+    } on DioError {
       throw ApiError();
     }
+    // You may also want to do some special treatment for InternalServerError
   }
 
   delete(String path) async {
@@ -64,9 +66,10 @@ class ApiClient {
       return await _dio.delete(path);
     } on UnauthorizedError {
       throw UnauthenticatedError();
-    } catch (error) {
+    } on DioError {
       throw ApiError();
     }
+    // You may also want to do some special treatment for InternalServerError
   }
 
   get(String path) async {
@@ -74,8 +77,9 @@ class ApiClient {
       return await _dio.get(path);
     } on UnauthorizedError {
       throw UnauthenticatedError();
-    } catch (error) {
+    } on DioError {
       throw ApiError();
     }
+    // You may also want to do some special treatment for InternalServerError
   }
 }

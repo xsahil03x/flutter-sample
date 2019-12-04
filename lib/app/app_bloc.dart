@@ -1,7 +1,8 @@
-import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:com_cingulo_sample/themes/sample_theme_light.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'app_l10n.dart';
 
 /*
  * This is a special bloc that does not extend common/bloc.dart
@@ -13,7 +14,7 @@ class AppBloc {
   factory AppBloc() => _singleton;
 
   static final initialState = AppState(
-    L10n.getPlatformLocale(),
+    AppL10n.instance.getPlatformLocale(),
     SampleThemeLight.themeData,
   );
 

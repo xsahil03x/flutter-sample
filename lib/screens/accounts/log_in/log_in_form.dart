@@ -14,7 +14,7 @@ class LogInForm extends StatefulWidget {
   State<StatefulWidget> createState() => _LogInFormState();
 }
 
-class _LogInFormState extends StatefulWBL<LogInForm, LogInFormBloc, LogInL10n> {
+class _LogInFormState extends AStatefulWBL<LogInForm, LogInFormBloc, LogInL10n> {
   @override
   final LogInFormBloc bloc = LogInFormBloc();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -33,7 +33,7 @@ class _LogInFormState extends StatefulWBL<LogInForm, LogInFormBloc, LogInL10n> {
 
   void _onData(LogInFormBlocState state) {
     if (state is LogInFormBlocSuccess) {
-      AppRouter.instance.navigateTo(context, SplashRoute.buildPath());
+      AppRouter.instance.navigateTo(SplashRoute.buildPath());
     }
   }
 

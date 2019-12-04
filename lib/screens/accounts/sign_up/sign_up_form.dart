@@ -16,7 +16,7 @@ class SignUpForm extends StatefulWidget {
   State<StatefulWidget> createState() => _SignUpFormState();
 }
 
-class _SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n> {
+class _SignUpFormState extends AStatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n> {
   @override
   final SignUpFormBloc bloc = SignUpFormBloc();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -48,7 +48,7 @@ class _SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10
 
   void _onData(SignUpFormBlocState state) {
     if (state is SignUpFormBlocSuccess) {
-      AppRouter.instance.navigateTo(context, SplashRoute.buildPath());
+      AppRouter.instance.navigateTo(SplashRoute.buildPath());
     }
   }
 

@@ -15,7 +15,7 @@ class TodoScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _TodoScreenState();
 }
 
-class _TodoScreenState extends StatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
+class _TodoScreenState extends AStatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
   @override
   final TodoBloc bloc = TodoBloc();
 
@@ -46,7 +46,7 @@ class _TodoScreenState extends StatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.settings),
-          onPressed: () => AppRouter.instance.navigateTo(context, SettingsRoute.buildPath()),
+          onPressed: () => AppRouter.instance.navigateTo(SettingsRoute.buildPath()),
         )
       ],
     );
@@ -68,7 +68,7 @@ class _TodoScreenState extends StatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
     return Card(
       child: GestureDetector(
         onTap: () {
-          AppRouter.instance.navigateTo(context, EditTaskRoute.buildPath(task.id));
+          AppRouter.instance.navigateTo(EditTaskRoute.buildPath(task.id));
         },
         child: ListTile(
           title: Text(task.name),

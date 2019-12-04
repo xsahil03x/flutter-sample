@@ -1,4 +1,4 @@
-import 'package:com_cingulo_sample/common/l10n.dart';
+import 'package:com_cingulo_sample/app/app_l10n.dart';
 import 'package:dio/dio.dart';
 
 class LanguageInterceptor extends Interceptor {
@@ -6,7 +6,7 @@ class LanguageInterceptor extends Interceptor {
 
   @override
   Future onRequest(RequestOptions options) async {
-    final acceptLanguage = L10n.getCurrentLocale().toString().replaceAll('_', '-');
+    final acceptLanguage = AppL10n.instance.getCurrentLocale().toString().replaceAll('_', '-');
     options.headers['Accept-Language'] = acceptLanguage;
     return options;
   }

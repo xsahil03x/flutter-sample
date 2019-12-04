@@ -1,5 +1,5 @@
 name: com_cingulo_sample
-description: A flutter implementation with network call, error handling, streams, and BloC..
+description: A sample boilerplate Flutter project.
 
 version: 1.0.0+1
 
@@ -9,44 +9,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  analyzer: ^0.36.4
-  pedantic: ^1.7.0
-
-  # Dependency Injection
-  build_runner: ^1.0.0
-  inject:
-    path: ./vendor/inject.dart/package/inject
-
-  # Internationalization
   flutter_localizations:
     sdk: flutter
-
-  # Analytics
+  analyzer: ^0.36.4
+  pedantic: ^1.7.0
   package_info: ^0.4.0+10
-
-  # Navigation
   fluro: ^1.5.1
-
-  # Rx
   rxdart: ^0.22.4
-
-  # Network call
-  dio: ^3.0.4
-
-  # Local storage
-  flutter_secure_storage: ^3.3.1
-
-  # Access an external url by browser
-  url_launcher: ^5.2.5
+  dio: ^3.0.7
+  flutter_secure_storage: ^3.3.1+1
+  url_launcher: ^5.2.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   inject_generator:
     path: ./vendor/inject.dart/package/inject_generator
+  inject:
+    path: ./vendor/inject.dart/package/inject
+  build_runner: ^1.7.1
 
 flutter:
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true

@@ -1,3 +1,4 @@
+import 'package:com_cingulo_sample/app/app_l10n.dart';
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +9,10 @@ enum _LKeys {
 
 class ErrorsL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    L10n.enUS.toString(): {
+    AppL10n.enUS.toString(): {
       _LKeys.apiError: "Oops! Something went wrong when connecting to our servers.",
     },
-    L10n.ptBR.toString(): {
+    AppL10n.ptBR.toString(): {
       _LKeys.apiError: "Oops! Ocorreram problemas ao conectar com nossos servidores.",
     },
   };
@@ -25,11 +26,9 @@ class ErrorsL10n {
   static const LocalizationsDelegate<dynamic> delegate = _ErrorsL10nDelegate();
 }
 
-class _ErrorsL10nDelegate extends L10nDelegate<ErrorsL10n> {
+class _ErrorsL10nDelegate extends AL10nDelegate<ErrorsL10n> {
   const _ErrorsL10nDelegate();
 
   @override
-  Future<ErrorsL10n> load(Locale locale) {
-    return SynchronousFuture<ErrorsL10n>(ErrorsL10n(locale));
-  }
+  Future<ErrorsL10n> load(Locale locale) => SynchronousFuture<ErrorsL10n>(ErrorsL10n(locale));
 }

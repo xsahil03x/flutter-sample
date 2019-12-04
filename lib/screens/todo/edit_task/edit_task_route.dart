@@ -1,9 +1,9 @@
 import 'package:com_cingulo_sample/app/app_di.dart';
-import 'package:com_cingulo_sample/app/app_router.dart';
+import 'package:com_cingulo_sample/common/route.dart';
 import 'package:com_cingulo_sample/screens/todo/edit_task/edit_task_screen.dart';
 import 'package:flutter/material.dart';
 
-class EditTaskRoute extends AppRouteDefinition {
+class EditTaskRoute extends ARoute {
   static String _path = '/todo/task/:id';
   static String buildPath(String id) => _path.replaceFirst(':id', id);
 
@@ -12,7 +12,7 @@ class EditTaskRoute extends AppRouteDefinition {
 
   @override
   Future<bool> hasPermission(Map<String, List<String>> params) async {
-    final di = await AppDi.instance();
+    final di = await AppDi.instance;
     final permission = await di.authRepository.getPermission();
     return permission.isAuthenticated;
   }
