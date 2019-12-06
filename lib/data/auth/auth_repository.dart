@@ -1,16 +1,17 @@
 import 'dart:async';
 
-import 'package:com_cingulo_sample/app/app_analytics.dart';
-import 'package:com_cingulo_sample/app/app_pushes.dart';
-import 'package:com_cingulo_sample/common/disposable.dart';
-import 'package:com_cingulo_sample/data/auth/auth_api.dart';
-import 'package:com_cingulo_sample/data/auth/mapper/auth_token_mapper.dart';
-import 'package:com_cingulo_sample/errors/error_handler.dart';
-import 'package:com_cingulo_sample/models/auth/auth_permission_model.dart';
-import 'package:com_cingulo_sample/models/auth/auth_token_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:inject/inject.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../../common/disposable.dart';
+import '../../errors/error_handler.dart';
+import '../../models/auth/auth_permission_model.dart';
+import '../../models/auth/auth_token_model.dart';
+import '../../services/analytics_service.dart';
+import '../../services/pushes_service.dart';
+import 'auth_api.dart';
+import 'mapper/auth_token_mapper.dart';
 
 /*
  * This is the only repository that must not extend Repository because
@@ -89,7 +90,7 @@ class AuthRepository with ADisposeMixin {
   Future<void> deleteToken() async {
     await _storage.delete(key: _authTokenKey);
     await _refreshPermission();
-    AppAnalytics.instance.unsetUser();
-    AppPushes.instance.unsetUser();
+    AnalyticsService.instance.unsetUser();
+    PushesService.instance.unsetUser();
   }
 }

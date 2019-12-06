@@ -11,8 +11,5 @@ class LogInRoute extends ARoute {
   String get path => _path;
 
   @override
-  Future<bool> hasPermission(Map<String, List<String>> params) async => true;
-
-  @override
   Widget handlerFunc(BuildContext context, Map<String, dynamic> params) => LogInScreen();
 }

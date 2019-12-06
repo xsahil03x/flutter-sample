@@ -1,7 +1,8 @@
-import 'package:com_cingulo_sample/app/app_l10n.dart';
-import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../../../common/l10n.dart';
+import '../../../services/l10n_service.dart';
 
 enum _LKeys {
   title,
@@ -22,7 +23,7 @@ class EditTaskL10n {
   EditTaskL10n(this.locale);
 
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    AppL10n.enUS.toString(): {
+    L10nService.enUS.toString(): {
       _LKeys.title: "Task",
       _LKeys.btnDelete: "Delete",
       _LKeys.deleteConfirmTitle: "Are you sure?",
@@ -34,7 +35,7 @@ class EditTaskL10n {
       _LKeys.checkboxDoneLabel: "Done",
       _LKeys.btnSave: "Save",
     },
-    AppL10n.ptBR.toString(): {
+    L10nService.ptBR.toString(): {
       _LKeys.title: "Tarefa",
       _LKeys.btnDelete: "Deletar",
       _LKeys.deleteConfirmTitle: "Tem certeza?",

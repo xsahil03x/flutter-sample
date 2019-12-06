@@ -1,11 +1,11 @@
 import 'package:com_cingulo_sample/models/accounts/user_model.dart';
 
-class AppAnalytics {
-  static AppAnalytics get instance => AppAnalytics();
-  static final AppAnalytics _singleton = AppAnalytics._init();
-  factory AppAnalytics() => _singleton;
+class AnalyticsService {
+  static AnalyticsService get instance => AnalyticsService();
+  static final AnalyticsService _singleton = AnalyticsService._init();
+  factory AnalyticsService() => _singleton;
 
-  AppAnalytics._init();
+  AnalyticsService._init();
 
   void setUser(UserModel auth) {
     // TODO: identify user in the analytics service

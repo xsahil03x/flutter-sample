@@ -1,16 +1,17 @@
-import 'package:com_cingulo_sample/app/app_analytics.dart';
-import 'package:com_cingulo_sample/app/app_di.dart';
-import 'package:com_cingulo_sample/app/app_pushes.dart';
-import 'package:com_cingulo_sample/data/accounts/accounts_api.dart';
-import 'package:com_cingulo_sample/data/accounts/mappers/log_in_mapper.dart';
-import 'package:com_cingulo_sample/data/accounts/mappers/sign_up_mapper.dart';
-import 'package:com_cingulo_sample/data/auth/auth_repository.dart';
-import 'package:com_cingulo_sample/data/auth/mapper/auth_token_mapper.dart';
-import 'package:com_cingulo_sample/data/auth/responses/auth_token_response.dart';
-import 'package:com_cingulo_sample/models/accounts/log_in_model.dart';
-import 'package:com_cingulo_sample/models/accounts/sign_up_model.dart';
-import 'package:com_cingulo_sample/models/accounts/user_model.dart';
 import 'package:inject/inject.dart';
+
+import '../../app/app_di.dart';
+import '../../models/accounts/log_in_model.dart';
+import '../../models/accounts/sign_up_model.dart';
+import '../../models/accounts/user_model.dart';
+import '../../services/analytics_service.dart';
+import '../../services/pushes_service.dart';
+import '../auth/auth_repository.dart';
+import '../auth/mapper/auth_token_mapper.dart';
+import '../auth/responses/auth_token_response.dart';
+import 'accounts_api.dart';
+import 'mappers/log_in_mapper.dart';
+import 'mappers/sign_up_mapper.dart';
 
 class AccountsRepository {
   final AccountsApi _accountsApi;
@@ -45,7 +46,7 @@ class AccountsRepository {
     final authToken = AuthTokenMapper.responseToModel(response);
     await _authRepository.saveToken(authToken); // Will call onAuthPermission()
     final user = await getUser();
-    AppAnalytics.instance.setUser(user);
-    AppPushes.instance.setUser(user);
+    AnalyticsService.instance.setUser(user);
+    PushesService.instance.setUser(user);
   }
 }

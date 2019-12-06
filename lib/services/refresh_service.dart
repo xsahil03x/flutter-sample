@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/subjects.dart';
 
-class AppRefresh extends WidgetsBindingObserver {
-  static AppRefresh get instance => AppRefresh();
-  static final AppRefresh _singleton = AppRefresh._init();
-  factory AppRefresh() => _singleton;
+class RefreshService extends WidgetsBindingObserver {
+  static RefreshService get instance => RefreshService();
+  static final RefreshService _singleton = RefreshService._init();
+  factory RefreshService() => _singleton;
 
   // Emits an event once a day.
   PublishSubject<void> _daily$$ = PublishSubject<void>();
@@ -13,7 +13,7 @@ class AppRefresh extends WidgetsBindingObserver {
 
   String _lastDailyEmitted;
 
-  AppRefresh._init() {
+  RefreshService._init() {
     _lastDailyEmitted = _getDate();
   }
 

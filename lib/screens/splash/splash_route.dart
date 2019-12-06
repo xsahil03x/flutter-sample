@@ -17,8 +17,5 @@ class SplashRoute extends ARoute {
   final TransitionType transition = TransitionType.fadeIn;
 
   @override
-  Future<bool> hasPermission(Map<String, List<String>> params) async => true;
-
-  @override
   Widget handlerFunc(BuildContext context, Map<String, dynamic> params) => SplashScreen();
 }

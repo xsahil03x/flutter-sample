@@ -1,14 +1,15 @@
-import 'package:com_cingulo_sample/app/app_router.dart';
-import 'package:com_cingulo_sample/common/widget.dart';
-import 'package:com_cingulo_sample/models/todo/task_model.dart';
-import 'package:com_cingulo_sample/screens/settings/settings_route.dart';
-import 'package:com_cingulo_sample/screens/todo/add_task/add_task_dialog.dart';
-import 'package:com_cingulo_sample/screens/todo/edit_task/edit_task_route.dart';
-import 'package:com_cingulo_sample/screens/todo/todo/todo_bloc.dart';
-import 'package:com_cingulo_sample/screens/todo/todo/todo_l10n.dart';
-import 'package:com_cingulo_sample/widgets/loaders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../common/widget.dart';
+import '../../../models/todo/task_model.dart';
+import '../../../services/router_service.dart';
+import '../../../widgets/loaders.dart';
+import '../../settings/settings_route.dart';
+import '../add_task/add_task_dialog.dart';
+import '../edit_task/edit_task_route.dart';
+import 'todo_bloc.dart';
+import 'todo_l10n.dart';
 
 class TodoScreen extends StatefulWidget {
   @override
@@ -46,7 +47,7 @@ class _TodoScreenState extends AStatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.settings),
-          onPressed: () => AppRouter.instance.navigateTo(SettingsRoute.buildPath()),
+          onPressed: () => RouterService.instance.navigateTo(SettingsRoute.buildPath()),
         )
       ],
     );
@@ -68,7 +69,7 @@ class _TodoScreenState extends AStatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
     return Card(
       child: GestureDetector(
         onTap: () {
-          AppRouter.instance.navigateTo(EditTaskRoute.buildPath(task.id));
+          RouterService.instance.navigateTo(EditTaskRoute.buildPath(task.id));
         },
         child: ListTile(
           title: Text(task.name),

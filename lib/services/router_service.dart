@@ -1,19 +1,19 @@
-import 'package:com_cingulo_sample/common/route.dart';
-import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_route.dart';
-import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_route.dart';
-import 'package:com_cingulo_sample/screens/settings/settings_route.dart';
-import 'package:com_cingulo_sample/screens/splash/splash_route.dart';
-import 'package:com_cingulo_sample/screens/todo/edit_task/edit_task_route.dart';
-import 'package:com_cingulo_sample/screens/todo/todo/todo_route.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
-import 'app.dart';
+import '../app/app.dart';
+import '../common/route.dart';
+import '../screens/accounts/log_in/log_in_route.dart';
+import '../screens/accounts/sign_up/sign_up_route.dart';
+import '../screens/settings/settings_route.dart';
+import '../screens/splash/splash_route.dart';
+import '../screens/todo/edit_task/edit_task_route.dart';
+import '../screens/todo/todo/todo_route.dart';
 
-class AppRouter {
-  static AppRouter get instance => AppRouter();
-  factory AppRouter() => _singleton;
-  static final AppRouter _singleton = AppRouter._init();
+class RouterService {
+  static RouterService get instance => RouterService();
+  factory RouterService() => _singleton;
+  static final RouterService _singleton = RouterService._init();
 
   static final List<ARoute> routes = [
     SplashRoute(),
@@ -26,7 +26,7 @@ class AppRouter {
 
   final Router _router = Router();
 
-  AppRouter._init() {
+  RouterService._init() {
     for (var route in routes) {
       _router.define(
         route.path,

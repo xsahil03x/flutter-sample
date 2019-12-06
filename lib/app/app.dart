@@ -1,11 +1,11 @@
-import 'package:com_cingulo_sample/app/app_l10n.dart';
-import 'package:com_cingulo_sample/app/app_router.dart';
-import 'package:com_cingulo_sample/env.dart';
-import 'package:com_cingulo_sample/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../env.dart';
+import '../screens/splash/splash_screen.dart';
+import '../services/l10n_service.dart';
+import '../services/refresh_service.dart';
+import '../services/router_service.dart';
 import 'app_bloc.dart';
-import 'app_refresh.dart';
 
 class App extends StatelessWidget {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -21,13 +21,13 @@ class App extends StatelessWidget {
           title: 'Flutter',
           debugShowCheckedModeBanner: Env.data.debugShowCheckedModeBanner,
           debugShowMaterialGrid: Env.data.debugShowMaterialGrid,
-          localizationsDelegates: AppL10n.delegates,
-          supportedLocales: AppL10n.locales,
+          localizationsDelegates: L10nService.delegates,
+          supportedLocales: L10nService.locales,
           locale: snapshot.data.locale,
           theme: snapshot.data.themeData,
-          onGenerateRoute: AppRouter.instance.generator,
+          onGenerateRoute: RouterService.instance.generator,
           builder: (context, widget) {
-            WidgetsBinding.instance.addObserver(AppRefresh.instance);
+            WidgetsBinding.instance.addObserver(RefreshService.instance);
             return widget;
           },
           home: SplashScreen(),

@@ -1,11 +1,11 @@
-import 'package:com_cingulo_sample/app/app_router.dart';
-import 'package:com_cingulo_sample/common/widget.dart';
-import 'package:com_cingulo_sample/models/accounts/log_in_model.dart';
-import 'package:com_cingulo_sample/screens/splash/splash_route.dart';
-import 'package:com_cingulo_sample/widgets/buttons.dart';
-import 'package:com_cingulo_sample/widgets/fields.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/widget.dart';
+import '../../../models/accounts/log_in_model.dart';
+import '../../../services/router_service.dart';
+import '../../../widgets/buttons.dart';
+import '../../../widgets/fields.dart';
+import '../../splash/splash_route.dart';
 import 'log_in_form_bloc.dart';
 import 'log_in_l10n.dart';
 
@@ -33,7 +33,7 @@ class _LogInFormState extends AStatefulWBL<LogInForm, LogInFormBloc, LogInL10n> 
 
   void _onData(LogInFormBlocState state) {
     if (state is LogInFormBlocSuccess) {
-      AppRouter.instance.navigateTo(SplashRoute.buildPath());
+      RouterService.instance.navigateTo(SplashRoute.buildPath());
     }
   }
 

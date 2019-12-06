@@ -1,18 +1,19 @@
-import 'package:com_cingulo_sample/app/app_l10n.dart';
-import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../common/l10n.dart';
+import '../services/l10n_service.dart';
 
 enum _LKeys { ok, yes, no }
 
 class WidgetsL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    AppL10n.enUS.toString(): {
+    L10nService.enUS.toString(): {
       _LKeys.ok: "Ok",
       _LKeys.yes: "Yes",
       _LKeys.no: "No",
     },
-    AppL10n.ptBR.toString(): {
+    L10nService.ptBR.toString(): {
       _LKeys.ok: "Ok",
       _LKeys.yes: "Sim",
       _LKeys.no: "Não",

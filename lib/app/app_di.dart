@@ -12,8 +12,7 @@ abstract class AppDi {
   static Future<AppDi> _instance;
   static void reset() => _instance = null;
   static Future<AppDi> get instance {
-    final dioDi = DioDi();
-    _instance ??= $gid.AppDi$Injector.create(dioDi);
+    _instance ??= $gid.AppDi$Injector.create(DioDi());
     return _instance;
   }
 

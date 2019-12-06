@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 
-import '../app/app_refresh.dart';
 import '../models/auth/auth_permission_model.dart';
+import '../services/refresh_service.dart';
 import 'dependency_injection.dart';
 import 'disposable.dart';
 
@@ -27,7 +27,7 @@ abstract class ARepository with ADisposableMixin, ADependencyInjectionMixin {
   void diReady() async {
     disposableFunctions
       ..add(di.authRepository.permission$.listen(_onAuthPermission).cancel)
-      ..add(AppRefresh.instance.daily$.listen((_) => onRefreshDaily()).cancel);
+      ..add(RefreshService.instance.daily$.listen((_) => onRefreshDaily()).cancel);
     await di.authRepository.initialized;
     postInit();
   }

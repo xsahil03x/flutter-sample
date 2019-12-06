@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:com_cingulo_sample/app/app_router.dart';
-import 'package:com_cingulo_sample/common/widget.dart';
-import 'package:com_cingulo_sample/models/accounts/sign_up_model.dart';
-import 'package:com_cingulo_sample/screens/splash/splash_route.dart';
-import 'package:com_cingulo_sample/widgets/buttons.dart';
-import 'package:com_cingulo_sample/widgets/fields.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/widget.dart';
+import '../../../models/accounts/sign_up_model.dart';
+import '../../../services/router_service.dart';
+import '../../../widgets/buttons.dart';
+import '../../../widgets/fields.dart';
+import '../../splash/splash_route.dart';
 import 'sign_up_form_bloc.dart';
 import 'sign_up_l10n.dart';
 
@@ -48,7 +48,7 @@ class _SignUpFormState extends AStatefulWBL<SignUpForm, SignUpFormBloc, SignUpL1
 
   void _onData(SignUpFormBlocState state) {
     if (state is SignUpFormBlocSuccess) {
-      AppRouter.instance.navigateTo(SplashRoute.buildPath());
+      RouterService.instance.navigateTo(SplashRoute.buildPath());
     }
   }
 

@@ -1,11 +1,12 @@
-import 'package:com_cingulo_sample/app/app_router.dart';
-import 'package:com_cingulo_sample/common/widget.dart';
-import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_route.dart';
-import 'package:com_cingulo_sample/screens/splash/splash_bloc.dart';
-import 'package:com_cingulo_sample/screens/todo/todo/todo_route.dart';
-import 'package:com_cingulo_sample/widgets/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import '../../common/widget.dart';
+import '../../services/router_service.dart';
+import '../../widgets/loaders.dart';
+import '../accounts/sign_up/sign_up_route.dart';
+import '../todo/todo/todo_route.dart';
+import 'splash_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -24,9 +25,9 @@ class _SplashScreenState extends AStatefulWB<SplashScreen, SplashBloc> {
 
   void _onData(SplashBlocState state) {
     if (state is SplashBlocAuthenticated) {
-      AppRouter.instance.navigateTo(TodoRoute.buildPath());
+      RouterService.instance.navigateTo(TodoRoute.buildPath());
     } else if (state is SplashBlocUnauthenticated) {
-      AppRouter.instance.navigateTo(SignUpRoute.buildPath());
+      RouterService.instance.navigateTo(SignUpRoute.buildPath());
     }
   }
 

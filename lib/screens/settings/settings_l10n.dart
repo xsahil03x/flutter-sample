@@ -1,7 +1,8 @@
-import 'package:com_cingulo_sample/app/app_l10n.dart';
-import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../../common/l10n.dart';
+import '../../services/l10n_service.dart';
 
 enum _LKeys {
   title,
@@ -18,7 +19,7 @@ enum _LKeys {
 
 class SettingsL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    AppL10n.enUS.toString(): {
+    L10nService.enUS.toString(): {
       _LKeys.title: "Settings",
       _LKeys.hiring: "We are hiring!",
       _LKeys.simulateExpiredAuthToken: "Simulate expired auth token",
@@ -30,7 +31,7 @@ class SettingsL10n {
       _LKeys.logout: "Log out",
       _LKeys.version: "Version {version}",
     },
-    AppL10n.ptBR.toString(): {
+    L10nService.ptBR.toString(): {
       _LKeys.title: "Configurações",
       _LKeys.hiring: "Estamos contratando!",
       _LKeys.simulateExpiredAuthToken: "Simular autenticação expirada",

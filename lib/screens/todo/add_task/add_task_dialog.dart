@@ -1,11 +1,12 @@
-import 'package:com_cingulo_sample/app/app_router.dart';
-import 'package:com_cingulo_sample/common/widget.dart';
-import 'package:com_cingulo_sample/models/todo/task_model.dart';
-import 'package:com_cingulo_sample/screens/todo/add_task/add_task_bloc.dart';
-import 'package:com_cingulo_sample/screens/todo/add_task/add_task_l10n.dart';
-import 'package:com_cingulo_sample/widgets/fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import '../../../common/widget.dart';
+import '../../../models/todo/task_model.dart';
+import '../../../services/router_service.dart';
+import '../../../widgets/fields.dart';
+import 'add_task_bloc.dart';
+import 'add_task_l10n.dart';
 
 class AddTaskDialog extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _AddTaskDialogState extends AStatefulWBL<AddTaskDialog, AddTaskBloc, AddTa
 
   void _onData(AddTaskBlocState state) {
     if (state is AddTaskBlocSuccess) {
-      AppRouter.instance.pop(context);
+      RouterService.instance.pop(context);
     }
   }
 

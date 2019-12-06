@@ -1,7 +1,8 @@
-import 'package:com_cingulo_sample/app/app_l10n.dart';
-import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../../../common/l10n.dart';
+import '../../../services/l10n_service.dart';
 
 enum _LKeys {
   title,
@@ -14,11 +15,11 @@ class TodoL10n {
   TodoL10n(this.locale);
 
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    AppL10n.enUS.toString(): {
+    L10nService.enUS.toString(): {
       _LKeys.title: "Cíngulo Flutter Sample",
       _LKeys.empty: "Start by creating a task",
     },
-    AppL10n.ptBR.toString(): {
+    L10nService.ptBR.toString(): {
       _LKeys.title: "Exemplo em Flutter do Cíngulo",
       _LKeys.empty: "Comece criando uma tarefa",
     },

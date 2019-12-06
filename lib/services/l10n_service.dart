@@ -11,10 +11,10 @@ import 'package:com_cingulo_sample/widgets/widgets_l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class AppL10n {
-  static AppL10n get instance => AppL10n();
-  factory AppL10n() => _singleton;
-  static final AppL10n _singleton = AppL10n._init();
+class L10nService {
+  static L10nService get instance => L10nService();
+  factory L10nService() => _singleton;
+  static final L10nService _singleton = L10nService._init();
 
   static T of<T>(BuildContext context) => Localizations.of<T>(context, T);
 
@@ -38,7 +38,7 @@ class AppL10n {
   static const Locale defaultLocale = enUS;
   static bool isSupported(Locale locale) => locales.contains(locale);
 
-  AppL10n._init();
+  L10nService._init();
 
   Locale getCurrentLocale() {
     final platformLocale = getPlatformLocale();

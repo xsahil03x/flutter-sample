@@ -1,13 +1,14 @@
-import 'package:com_cingulo_sample/app/app_l10n.dart';
-import 'package:com_cingulo_sample/widgets/widgets_l10n.dart';
 import 'package:flutter/material.dart';
+
+import '../services/l10n_service.dart';
+import 'widgets_l10n.dart';
 
 class DialogAlert extends AlertDialog {
   static void show(BuildContext context, String content, {String title}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final l10n = AppL10n.of<WidgetsL10n>(context);
+        final l10n = L10nService.of<WidgetsL10n>(context);
         return AlertDialog(
           title: title == null ? null : Text(title),
           content: Text(content),
@@ -35,7 +36,7 @@ class DialogConfirm extends AlertDialog {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final l10n = AppL10n.of<WidgetsL10n>(context);
+        final l10n = L10nService.of<WidgetsL10n>(context);
         return AlertDialog(
           title: title == null ? null : Text(title),
           content: Text(content),

@@ -1,7 +1,8 @@
-import 'package:com_cingulo_sample/app/app_l10n.dart';
-import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../common/l10n.dart';
+import '../services/l10n_service.dart';
 
 enum _LKeys {
   apiError,
@@ -9,10 +10,10 @@ enum _LKeys {
 
 class ErrorsL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    AppL10n.enUS.toString(): {
+    L10nService.enUS.toString(): {
       _LKeys.apiError: "Oops! Something went wrong when connecting to our servers.",
     },
-    AppL10n.ptBR.toString(): {
+    L10nService.ptBR.toString(): {
       _LKeys.apiError: "Oops! Ocorreram problemas ao conectar com nossos servidores.",
     },
   };

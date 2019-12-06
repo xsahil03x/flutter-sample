@@ -1,11 +1,11 @@
 import '../models/accounts/user_model.dart';
 
-class AppCrashes {
-  static AppCrashes get instance => AppCrashes();
-  factory AppCrashes() => _singleton;
-  static final AppCrashes _singleton = AppCrashes._init();
+class CrashesService {
+  static CrashesService get instance => CrashesService();
+  factory CrashesService() => _singleton;
+  static final CrashesService _singleton = CrashesService._init();
 
-  AppCrashes._init();
+  CrashesService._init();
 
   void setUser(UserModel user) {
     // TODO: identify user in the crash service

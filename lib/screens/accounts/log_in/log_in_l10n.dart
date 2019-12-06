@@ -1,7 +1,8 @@
-import 'package:com_cingulo_sample/app/app_l10n.dart';
-import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../../../common/l10n.dart';
+import '../../../services/l10n_service.dart';
 
 enum _LKeys {
   title,
@@ -12,13 +13,13 @@ enum _LKeys {
 
 class LogInL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
-    AppL10n.enUS.toString(): {
+    L10nService.enUS.toString(): {
       _LKeys.title: "Log In",
       _LKeys.formUsername: "Username or email",
       _LKeys.formPassword: "Password",
       _LKeys.formSubmit: "Log In",
     },
-    AppL10n.ptBR.toString(): {
+    L10nService.ptBR.toString(): {
       _LKeys.title: "Acesse",
       _LKeys.formUsername: "Nome de usuário ou email",
       _LKeys.formPassword: "Senha",

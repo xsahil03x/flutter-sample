@@ -1,14 +1,15 @@
-import 'package:com_cingulo_sample/app/app_router.dart';
-import 'package:com_cingulo_sample/common/widget.dart';
-import 'package:com_cingulo_sample/models/todo/task_model.dart';
-import 'package:com_cingulo_sample/screens/todo/edit_task/edit_task_bloc.dart';
-import 'package:com_cingulo_sample/screens/todo/edit_task/edit_task_l10n.dart';
-import 'package:com_cingulo_sample/widgets/buttons.dart';
-import 'package:com_cingulo_sample/widgets/dialogs.dart';
-import 'package:com_cingulo_sample/widgets/fields.dart';
-import 'package:com_cingulo_sample/widgets/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import '../../../common/widget.dart';
+import '../../../models/todo/task_model.dart';
+import '../../../services/router_service.dart';
+import '../../../widgets/buttons.dart';
+import '../../../widgets/dialogs.dart';
+import '../../../widgets/fields.dart';
+import '../../../widgets/loaders.dart';
+import 'edit_task_bloc.dart';
+import 'edit_task_l10n.dart';
 
 class EditTaskScreen extends StatefulWidget {
   final String id;
@@ -56,7 +57,7 @@ class _EditTaskScreenState extends AStatefulWBL<EditTaskScreen, EditTaskBloc, Ed
         _loaded = true;
       });
     } else if (state is EditTaskBlocSuccess) {
-      AppRouter.instance.pop(context);
+      RouterService.instance.pop(context);
     }
   }
 
