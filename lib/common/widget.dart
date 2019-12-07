@@ -1,6 +1,6 @@
-import 'package:com_cingulo_sample/errors/error_handler.dart';
 import 'package:flutter/material.dart';
 
+import '../errors/error_handler.dart';
 import 'bloc.dart';
 import 'disposable.dart';
 
@@ -33,6 +33,14 @@ abstract class AStatefulWB<S extends StatefulWidget, B extends ABloc> extends St
 abstract class AStatefulWL<W extends StatefulWidget, L> extends State<W> with ADisposableMixin {
   @protected
   L l10n;
+
+  @protected
+  @override
+  @mustCallSuper
+  void dispose() {
+    disposable();
+    super.dispose();
+  }
 
   @protected
   @override
